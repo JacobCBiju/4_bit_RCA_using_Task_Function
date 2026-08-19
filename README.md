@@ -64,7 +64,8 @@ endmodule
 Test Bench
 
 # Output Waveform
-------------------------------PASTE THE OUTPUT---------------------------------
+<img width="1038" height="587" alt="image" src="https://github.com/user-attachments/assets/e1fafa90-b000-4602-97f7-27f8b27b8402" />
+
 
 # Conclusion
 In this experiment, a 4-bit-Ripple-counter-using-Function-and-4-bit-Ripple-Adder-using-task was successfully designed and simulated using Verilog HDL.
