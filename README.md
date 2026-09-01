@@ -40,10 +40,68 @@ end
 endmodule
 ```
 Test Bench
+```
+module ripple_adder_task_tb;
 
+reg [3:0] A, B;
+reg Cin;
+
+wire [3:0] Sum;
+wire Cout;
+
+ripple_adder_task uut (
+    .A(A),
+    .B(B),
+    .Cin(Cin),
+    .Sum(Sum),
+    .Cout(Cout)
+);
+
+initial begin
+
+    // Test 1: 3 + 5 = 8
+    A = 4'b0011;
+    B = 4'b0101;
+    Cin = 1'b0;
+    #10;
+
+    // Test 2: 7 + 4 = 11
+    A = 4'b0111;
+    B = 4'b0100;
+    Cin = 1'b0;
+    #10;
+
+    // Test 3: 9 + 6 = 15
+    A = 4'b1001;
+    B = 4'b0110;
+    Cin = 1'b0;
+    #10;
+
+    // Test 4: 15 + 1 = 16
+    A = 4'b1111;
+    B = 4'b0001;
+    Cin = 1'b0;
+    #10;
+
+    // Test 5: 5 + 3 + 1 = 9
+    A = 4'b0101;
+    B = 4'b0011;
+    Cin = 1'b1;
+    #10;
+
+    $finish;
+end
+
+initial begin
+    $monitor("Time=%0t | A=%b | B=%b | Cin=%b | Sum=%b | Cout=%b",
+             $time, A, B, Cin, Sum, Cout);
+end
+
+endmodule
+```
 # Output Waveform
 
-------------------------------PASTE THE OUTPUT---------------------------------
+<img width="1705" height="898" alt="image" src="https://github.com/user-attachments/assets/6b1e0e80-6a38-4aff-9f4b-ba69d82a401d" />
 
 # 4 bit Ripple counter using Function
 // 4-bit Ripple Counter using Function 
@@ -62,7 +120,46 @@ end
 endmodule
 ```
 Test Bench
+```
+module ripple_counter_func_tb;
 
+reg clk;
+reg rst;
+wire [3:0] Q;
+
+ripple_counter_func uut (
+    .clk(clk),
+    .rst(rst),
+    .Q(Q)
+);
+
+// Clock generation
+initial begin
+    clk = 1'b0;
+    forever #5 clk = ~clk;
+end
+
+initial begin
+
+    // Reset
+    rst = 1'b1;
+    #10;
+
+    rst = 1'b0;
+
+    // Count
+    #100;
+
+    $finish;
+end
+
+initial begin
+    $monitor("Time=%0t | RST=%b | CLK=%b | Q=%b | Decimal=%d",
+             $time, rst, clk, Q, Q);
+end
+
+endmodule
+```
 # Output Waveform
 <img width="1038" height="587" alt="image" src="https://github.com/user-attachments/assets/e1fafa90-b000-4602-97f7-27f8b27b8402" />
 
